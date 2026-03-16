@@ -28,7 +28,7 @@ import numpy as np
 from predict import CancerPredictor
 
 # Line 1: Load model
-predictor = CancerPredictor("/root/METAtrain/saved_models_clin_cnv_snv_mrna")
+predictor = CancerPredictor("./saved_models_clin_cnv_snv_mrna")
 
 # Line 2: Prepare data (Example with random data)
 clin_data = pd.DataFrame(np.random.randn(5, 6))     # Clinical: 5 samples x 6 features
