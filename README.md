@@ -21,9 +21,33 @@ Furthermore, to enhance model robustness and generalization, we introduce **CAGM
 
 ---
 
+## Quick Start
+```
+import pandas as pd
+import numpy as np
+from predict import CancerPredictor
+
+# Line 1: Load model
+predictor = CancerPredictor("/root/METAtrain/saved_models_clin_cnv_snv_mrna")
+
+# Line 2: Prepare data (Example with random data)
+clin_data = pd.DataFrame(np.random.randn(5, 6))     # Clinical: 5 samples x 6 features
+cnv_data = pd.DataFrame(np.random.randn(5, 7))      # CNV: 5 samples x 7 features
+snv_data = pd.DataFrame(np.random.randint(0, 2, (5, 15)))  # SNV: 5 samples x 15 features (binary)
+mrna_data = pd.DataFrame(np.random.randn(5, 50))    # mRNA: 5 samples x 50 features
+
+# Line 3: Get predictions
+labels, probabilities = predictor.predict(clin_data, cnv_data, snv_data, mrna_data)
+
+# View results
+print("Predicted labels:", labels)
+print("Prediction probabilities:\n", probabilities)
+```
+
+
 ## Code Structure and Documentation
 
-### 1. `CGAMF-Net.py` - Core Model Architecture and Training
+### 1. `CAGMF-Net.py` - Core Model Architecture and Training
 
 This script implements the complete CAGMF-Net framework, training the full four-modality model and saving parameters for subtype prediction.
 
@@ -45,7 +69,7 @@ batch_size = 32        # Batch size for DataLoader
 **Usage:**
 
 ```bash
-python CGAMF-Net.py
+python CAGMF-Net.py
 ```
 
 ---
