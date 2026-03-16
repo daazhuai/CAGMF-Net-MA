@@ -1,0 +1,315 @@
+{
+    "combo_name": "clin_cnv_snv_mrna",
+    "available_modals": [
+        "clin",
+        "cnv",
+        "snv",
+        "mrna"
+    ],
+    "candidate_models": [
+        [
+            "clin"
+        ],
+        [
+            "cnv"
+        ],
+        [
+            "snv"
+        ],
+        [
+            "mrna"
+        ],
+        [
+            "clin",
+            "cnv"
+        ],
+        [
+            "clin",
+            "snv"
+        ],
+        [
+            "clin",
+            "mrna"
+        ],
+        [
+            "cnv",
+            "snv"
+        ],
+        [
+            "cnv",
+            "mrna"
+        ],
+        [
+            "snv",
+            "mrna"
+        ],
+        [
+            "clin",
+            "cnv",
+            "snv"
+        ],
+        [
+            "clin",
+            "cnv",
+            "mrna"
+        ],
+        [
+            "clin",
+            "snv",
+            "mrna"
+        ],
+        [
+            "cnv",
+            "snv",
+            "mrna"
+        ],
+        [
+            "clin",
+            "cnv",
+            "snv",
+            "mrna"
+        ]
+    ],
+    "model_weights": [
+        0.010826497582134147,
+        4.466963179427326e-11,
+        7.34278232779457e-12,
+        0.33060792020558677,
+        0.10476231824669127,
+        0.04422358844945933,
+        0.15823939038490206,
+        2.1308446451431557e-11,
+        0.060986968958735344,
+        0.13546169165531027,
+        0.04655346871053217,
+        0.1083381493944702,
+        3.3050592704454333e-10,
+        5.50139617218092e-11,
+        5.953337572141365e-09
+    ],
+    "n_classes": 5,
+    "class_names": [
+        "Basal",
+        "Her2",
+        "LumA",
+        "LumB",
+        "Normal"
+    ],
+    "feature_dimensions": {
+        "snv": 15,
+        "cnv": 7,
+        "mrna": 50,
+        "clin": 6
+    },
+    "clinical_encoding": {
+        "ER": {
+            "Negative": 0,
+            "Positive": 1
+        },
+        "PR": {
+            "Negative": 0,
+            "Positive": 1
+        },
+        "HER2": {
+            "Negative": 0,
+            "Positive": 1
+        },
+        "LN": {
+            "LN+": 0,
+            "LN-": 1
+        },
+        "MENOPAUSEstage": {
+            "Post": 0,
+            "Pre": 1
+        }
+    },
+    "models_info": {
+        "model_1": {
+            "modalities": [
+                "clin"
+            ],
+            "weight": 0.010826497582134147,
+            "filename": "model_1_clin.pth",
+            "feature_dims": {
+                "clin": 6
+            }
+        },
+        "model_2": {
+            "modalities": [
+                "cnv"
+            ],
+            "weight": 4.466963179427326e-11,
+            "filename": "model_2_cnv.pth",
+            "feature_dims": {
+                "cnv": 7
+            }
+        },
+        "model_3": {
+            "modalities": [
+                "snv"
+            ],
+            "weight": 7.34278232779457e-12,
+            "filename": "model_3_snv.pth",
+            "feature_dims": {
+                "snv": 15
+            }
+        },
+        "model_4": {
+            "modalities": [
+                "mrna"
+            ],
+            "weight": 0.33060792020558677,
+            "filename": "model_4_mrna.pth",
+            "feature_dims": {
+                "mrna": 50
+            }
+        },
+        "model_5": {
+            "modalities": [
+                "clin",
+                "cnv"
+            ],
+            "weight": 0.10476231824669127,
+            "filename": "model_5_clin_cnv.pth",
+            "feature_dims": {
+                "clin": 6,
+                "cnv": 7
+            }
+        },
+        "model_6": {
+            "modalities": [
+                "clin",
+                "snv"
+            ],
+            "weight": 0.04422358844945933,
+            "filename": "model_6_clin_snv.pth",
+            "feature_dims": {
+                "clin": 6,
+                "snv": 15
+            }
+        },
+        "model_7": {
+            "modalities": [
+                "clin",
+                "mrna"
+            ],
+            "weight": 0.15823939038490206,
+            "filename": "model_7_clin_mrna.pth",
+            "feature_dims": {
+                "clin": 6,
+                "mrna": 50
+            }
+        },
+        "model_8": {
+            "modalities": [
+                "cnv",
+                "snv"
+            ],
+            "weight": 2.1308446451431557e-11,
+            "filename": "model_8_cnv_snv.pth",
+            "feature_dims": {
+                "cnv": 7,
+                "snv": 15
+            }
+        },
+        "model_9": {
+            "modalities": [
+                "cnv",
+                "mrna"
+            ],
+            "weight": 0.060986968958735344,
+            "filename": "model_9_cnv_mrna.pth",
+            "feature_dims": {
+                "cnv": 7,
+                "mrna": 50
+            }
+        },
+        "model_10": {
+            "modalities": [
+                "snv",
+                "mrna"
+            ],
+            "weight": 0.13546169165531027,
+            "filename": "model_10_snv_mrna.pth",
+            "feature_dims": {
+                "snv": 15,
+                "mrna": 50
+            }
+        },
+        "model_11": {
+            "modalities": [
+                "clin",
+                "cnv",
+                "snv"
+            ],
+            "weight": 0.04655346871053217,
+            "filename": "model_11_clin_cnv_snv.pth",
+            "feature_dims": {
+                "clin": 6,
+                "cnv": 7,
+                "snv": 15
+            }
+        },
+        "model_12": {
+            "modalities": [
+                "clin",
+                "cnv",
+                "mrna"
+            ],
+            "weight": 0.1083381493944702,
+            "filename": "model_12_clin_cnv_mrna.pth",
+            "feature_dims": {
+                "clin": 6,
+                "cnv": 7,
+                "mrna": 50
+            }
+        },
+        "model_13": {
+            "modalities": [
+                "clin",
+                "snv",
+                "mrna"
+            ],
+            "weight": 3.3050592704454333e-10,
+            "filename": "model_13_clin_snv_mrna.pth",
+            "feature_dims": {
+                "clin": 6,
+                "snv": 15,
+                "mrna": 50
+            }
+        },
+        "model_14": {
+            "modalities": [
+                "cnv",
+                "snv",
+                "mrna"
+            ],
+            "weight": 5.50139617218092e-11,
+            "filename": "model_14_cnv_snv_mrna.pth",
+            "feature_dims": {
+                "cnv": 7,
+                "snv": 15,
+                "mrna": 50
+            }
+        },
+        "model_15": {
+            "modalities": [
+                "clin",
+                "cnv",
+                "snv",
+                "mrna"
+            ],
+            "weight": 5.953337572141365e-09,
+            "filename": "model_15_clin_cnv_snv_mrna.pth",
+            "feature_dims": {
+                "clin": 6,
+                "cnv": 7,
+                "snv": 15,
+                "mrna": 50
+            }
+        }
+    },
+    "training_date": "2026-02-17 17:20:30",
+    "n_samples": 1614,
+    "n_models": 15
+}
