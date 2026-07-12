@@ -22,7 +22,7 @@ Each dataset includes:
 | -------- | ---------------------------- |
 | Clinical | `*_Clinical_HRD.csv`         |
 | SNV      | `*_SNV.csv`                  |
-| CNV/CNA  | `*_CNV_CX.csv` / `*_CNA.csv` |
+| CNA      | `*_CNV_CX.csv` / `*_CNA.csv` |
 | mRNA     | `*_mRNA.csv`                 |
 
 ## Environment
