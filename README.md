@@ -103,9 +103,7 @@ python baseline_compare/model_choose_baseline_HRD.py --data_dir ./data/tcga
     ├── inner/                        # CAGMF-Net-MA Internal results
     └── external/                     # CAGMF-Net-MA External validation results
 ```
-## Citation
 
-If you use this code in your research, please cite the corresponding paper.
 ## Citation
 
 If you use this code in your research, please cite the corresponding paper.
