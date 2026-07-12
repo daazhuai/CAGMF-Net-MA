@@ -6,7 +6,7 @@ This repository provides the official implementation of **CAGMF-Net-MA** for pre
 
 1. Train 8 candidate models with different modality combinations (from clinical-only to full four-modality fusion).
 2. Obtain out-of-fold (OOF) predictions for each candidate via 5-fold CV.
-3. Optimize ensemble weights by minimizing a CV criterion (MSE via quadratic programming, or cross-entropy/focal loss via numerical optimization), subject to sum-to-one and non-negativity constraints.
+3. Optimize ensemble weights by minimizing a CV criterion, subject to sum-to-one and non-negativity constraints.
 4. Average test-set predictions from constituent candidates using the optimized weights.
 
 
