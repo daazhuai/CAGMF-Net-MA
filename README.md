@@ -1,4 +1,4 @@
-# CAGMF-Net-MA-CAGMF-Net-with-CV-Model-Averaging-for-HRD-Prediction
+# CAGMF-Net-MA
 This repository provides the official implementation of **CAGMF-Net-MA** for predicting Homologous Recombination Deficiency (HRD) status from multi-omics data.
 **CAGMF-Net** (Clinical-Anchored Gated Multi-modal Fusion Network) integrates clinical features, SNV (single nucleotide variants), CNV (copy number variations), and mRNA expression data. It uses the clinical modality as an anchor and employs gating mechanisms to selectively fuse complementary information from other modalities.
 
