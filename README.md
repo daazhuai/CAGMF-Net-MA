@@ -14,16 +14,7 @@ This repository provides the official implementation of **CAGMF-Net-MA** for pre
 ## Datasets
 
 - **TCGA-BRCA**: Used for training and internal cross-validation (5-fold CV, 100 random splits).
-- **METABRIC**: Used for independent external validation.
-
-Each dataset includes:
-
-| Modality | File                         |
-| -------- | ---------------------------- |
-| Clinical | `*_Clinical_HRD.csv`         |
-| SNV      | `*_SNV.csv`                  |
-| CNA      | `*_CNV_CX.csv` / `*_CNA.csv` |
-| mRNA     | `*_mRNA.csv`                 |
+- **METABRIC, MyBrCa, SCAN-B**: Used for independent external validation.
 
 ## Environment
 
@@ -44,64 +35,63 @@ pip install torch numpy pandas scikit-learn tqdm xgboost lightgbm
 ### 1. Train and evaluate CAGMF-Net-MA
 
 ```bash
-python cagmf_net_ma_HRD.py \
-    --data_dir ./data/tcga \
-    --output_dir ./eval_results/tcga_hrd_cagmf_ma \
-    --n_splits 100 \
-    --smote \
-    --youden
+python cagmf_net_ma_cv_addeval_HRD.py
 ```
-
-Key arguments:
-
-- `--smote`: Apply SMOTE for class balancing
-- `--oversample`: Apply random oversampling (alternative to SMOTE)
-- `--youden`: Use Youden index for threshold selection
-- `--loss {ce,focal}`: Loss function (cross-entropy or focal loss)
-- `--cv_criterion {mse,ce,focal}`: Criterion for CV weight optimization
 
 ### 2. External validation on METABRIC
 
 ```bash
-python cagmf_net_ma_HRD_external_validation.py \
-    --metabric_dir ./data/metabric \
-    --model_dir ./eval_results/tcga_hrd_cagmf_ma \
-    --n_seeds 100
+python cagmf_net_ma_external_train_TCGA.py
+
+python cagmf_net_ma_external_validation_METABRIC.py
+python cagmf_net_ma_external_validation_MyBrCa.py
+ython cagmf_net_ma_external_validation_SCAN-B.py
 ```
 
 ### 3. Baselines
 
 ```bash
-# Single CAGMF-Net (no model averaging)
-python baseline_compare/cagmf_net_baseline_HRD.py --data_dir ./data/tcga
+# Traditional ML baselines
+python baseline_compare/ml_baseline_HRD.py \
+      --data_dir ./data/tcga \
+      --output_dir ./eval_results/tcga_hrd_ml_baselines \
+      --n_splits 100 \
+      --smote
 
-# Traditional ML baselines (LR, RF, XGBoost, LightGBM, SVM, Lasso)
-python baseline_compare/ml_baseline_HRD.py --data_dir ./data/tcga
+# Single CAGMF-Net (no model averaging)
+python baseline_compare/cagmf_net_baseline_HRD.py \
+      --main_exp_dir ./eval_results/tcga_hrd_cagmf_ma \
+      --output_dir ./eval_results/tcga_hrd_cagmf_single
+
+# AIC/BIC model selection from scratch
+ython baseline_compare/model_choose_baseline_HRD.py \
+      --main_exp_dir ./eval_results/tcga_hrd_cagmf_ma \
+      --output_dir ./eval_results/tcga_hrd_model_choose \
+      --method both
 
 # Equal-weight / SAIC / SBIC ensemble baselines
-python baseline_compare/equal_weight_baseline_HRD.py --data_dir ./data/tcga
+python baseline_compare/model_average_baseline_HRD.py \
+      --main_exp_dir ./eval_results/tcga_hrd_cagmf_ma \
+      --output_dir ./eval_results/tcga_hrd_model_average
 
-# SAIC/SBIC model selection from scratch
-python baseline_compare/model_choose_baseline_HRD.py --data_dir ./data/tcga
 ```
 
 ## Project Structure
 
 ```
-├── utils.py                          # Evaluation metrics and seed setting
+├── utils.py                          # Base setting
 ├── cagmf_net_ma_HRD.py               # Main experiment: CAGMF-Net with model averaging
-├── cagmf_net_ma_HRD_external_validation.py  # External validation on METABRIC
+├── cagmf_net_ma_external_train_TCGA.py  # train on full TCGA
+├── cagmf_net_ma_external_validation_METABRIC.py  # External validation on METABRIC
+├── cagmf_net_ma_external_validation_MyBrCa.py  # External validation on MyBrCa
+├── cagmf_net_ma_external_validation_SCAN-B.py  # External validation on SCAN-B
 ├── baseline_compare/
-│   ├── cagmf_net_baseline_HRD.py     # Single-model CAGMF-Net baseline
-│   ├── equal_weight_baseline_HRD.py  # Equal weight / SAIC / SBIC baselines
 │   ├── ml_baseline_HRD.py            # Traditional ML baselines
-│   └── model_choose_baseline_HRD.py  # SAIC/SBIC model selection
+│   ├── equal_weight_baseline_HRD.py  # Single-model CAGMF-Net baseline
+│   ├── cagmf_net_baseline_HRD.py     # AIC/BIC model selection# Equal weight / SAIC / SBIC baselines
+│   └── model_choose_baseline_HRD.py  # Equal weight / SAIC / SBIC baselines
 ├── data/                             # Dataset directory
-│   ├── tcga/
-│   └── metabric/
-└── results/                          # Saved models and evaluation results
-    ├── inner/                        # CAGMF-Net-MA Internal results
-    └── external/                     # CAGMF-Net-MA External validation results
+└── eval_results/                     # Saved models and evaluation results
 ```
 
 ## Citation
